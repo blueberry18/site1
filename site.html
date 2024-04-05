@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WildLife</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #FFFFFF;
+            background-color: #0F1B07
+        }
+
+        a.your-button-class {
+            background-color: #73793a;
+            font-size: 14px;
+            padding: 10px 24px 10px 28px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            transition: background-color 0.5s ease-in-out;
+        }
+            a.your-button-class:hover {
+                background-color: #0F1B07;
+                color: #FFFFFF
+            }
+
+        .header {
+            top: 0;
+            position: fixed;
+            background-color: #73793a;
+            text-align: right;
+            padding: 10px;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 3px solid black;
+        }
+
+            .header a {
+                margin: 0 10px;
+                margin-top: 0px
+            }
+
+            .header-image {
+                float: left;
+                margin-right: 0px;
+                margin-bottom: 0px;
+            }
+
+        .main-image {
+            width: 10%;
+            height: 300px;
+            background-color: ivory;
+        }
+
+        .tiger-container {
+            margin-top: 80px;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .tiger-container img {
+                position: absolute;
+                min-width: 100%;
+                min-height: 500px;
+                max-width: none;
+                max-height: none;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        .centered-block {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+            .centered-block div {
+                text-align: center;
+            }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .content-block {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+            .content-block div {
+                text-align: center;
+            }
+
+        .specific-block {
+            width: 600px;
+            padding: 10px;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffffff, #5c821a);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+            .specific-block h2 {
+                color: #0F1B07;
+                margin-bottom: 20px;
+            }
+
+            .specific-block .image-container {
+                width: 100%; 
+                height: 400px;
+                overflow: hidden; 
+            }
+
+                .image-container img:hover {
+                    transform: scale(1.1); 
+                }
+
+            .specific-block img {
+                width: 100%;
+                transition: transform 0.5s ease;
+                height: auto;
+            }
+
+            .specific-block p {
+                color: white;
+                line-height: 1.6;
+            }
+
+        .slider {
+            position: relative;
+            height: 700px;
+            width: 70%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .slide img {
+                height: 100%;
+            }
+
+            .slide.active {
+                opacity: 1;
+                z-index: 2;
+                display: flex;
+            }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#">
+            <img src="logo.png" width="30" height="30" class="header-image">
+        </a>
+        <a href="#africa-content" class="your-button-class">Африка</a>
+        <a href="#asia-content" class="your-button-class">Азия</a>
+        <a href="#NA-content" class="your-button-class">Северная Америка</a>
+        <a href="#SA-content" class="your-button-class">Южная Америка</a>
+        <a href="#australia-content" class="your-button-class">Австралия</a>
+        <a href="#EU-content" class="your-button-class">Европа</a>
+        <a href="#antarctida-content" class="your-button-class">Антрактида</a>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('a').click(function () {
+                var target = $($.attr(this, 'href'));
+                if (target.length) {
+                    var scrollTo = target.offset().top - 70;
+                    $('html, body').animate({ scrollTop: scrollTo }, 500);
+                    return false;
+                }
+            });
+        });
+    </script>
+    <div class="slider">
+        <div class="slide active" id="slide1"><img src="tiger.jpg" /></div>
+        <div class="slide" id="slide2"><img src="panda.jpg" /></div>
+        <div class="slide" id="slide3"><img src="tiger2.jpg" /></div>
+        <div class="slide" id="slide4"><img src="tiger3.jpg" /></div>
+        <div class="slide" id="slide5"><img src="tiger4.jpg" /></div>
+    </div>
+    <button class="prev">Предыдущий</button>
+    <button class="next">Следующий</button>
+    <script>
+        $(document).ready(function () {
+            var currentSlide = 0;
+            var slides = $('.slide');
+
+            function showSlide(index) {
+                slides.each(function (i) {
+                    if (i === index) {
+                        $(this).addClass('active').css('opacity', 1).show();
+                    } else {
+                        $(this).removeClass('active').css('opacity', 0).hide();
+                    }
+                });
+            }
+
+            $('.prev').click(function () {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            });
+
+            $('.next').click(function () {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            });
+
+            showSlide(currentSlide);
+        });
+
+    </script>
+    <div class="content-block">
+        <div>
+            <h1>Узнайте больше о нашей планете и её обитателях</h1>
+            <p class="centered-block">Познакомтесь с самыми редкими и удивительными представителями фауны каждого континента</p>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="africa-content">
+            <h1>Африка</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/GRde7WGScrM" title="Animals of Africa 4K - Scenic Relaxation Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="gradientafrica-background">
+        <div class="content-block">
+            <div class="specific-block">
+                <h2>Куду</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Male_greater_kudu.jpg/1280px-Male_greater_kudu.jpg" alt="Изображение-Куду">
+                </div>
+                <p>Это крупные африканские антилопы, которые известны своими впечатляющими рогами. Рога могут достигать длины от 1 до 2,5 метра. Куду также обладают уникальной способностью приспосабливаться к различным условиям среды.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9_%D0%BA%D1%83%D0%B4%D1%83', '_blank')">Узнать больше на Википедии</button>
+            </div>
+            <div class="specific-block">
+                <h2>Лемуры</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Lemur_walking.jpg/1280px-Lemur_walking.jpg" alt="Изображение-Лемур">
+                </div>
+                <p>Хотя большинство лемуров обитают на Мадагаскаре, некоторые виды можно встретить и в Африке. Они известны своими большими глазами и длинными хвостами. Лемуры - это приматы, и они играют важную роль в экосистемах, в которых обитают.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Лемур', '_blank')">Узнать больше на Википедии</button>
+            </div>
+            <div class="specific-block">
+                <h2>Слон</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elephant_Diversity.jpg/1280px-Elephant_Diversity.jpg" alt="Изображение">
+                </div>
+                <p>Это крупнейшее наземное животное на планете, и они широко распространены в Африке. Слоны известны своими большими ушами, мощными бивнями и длинными хоботами. Они играют важную роль в экосистемах, в которых обитают, помогая формировать ландшафт и распространять семена.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Слон', '_blank')">Узнать больше на Википедии</button>
+            </div>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="asia-content">
+            <h1>Азия</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/KfjIaEP0EtY" title="Animals of Asia 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="gradientasia-background">
+        <div class="content-block">
+            <div class="specific-block">
+                <h2>Суматранский носорог</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Sumatran_Rhino_2.jpg/1280px-Sumatran_Rhino_2.jpg" alt="Изображение-Куду">
+                </div>
+                <p>Это один из самых редких видов носорогов в мире. Он отличается от других своими двумя рогами и уникальной способностью подстригать свою шерсть. Суматранский носорог является единственным видом носорога, который обитает в Азии.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Суматранский_носорог', '_blank')">Узнать больше на Википедии</button>
+            </div>
+            <div class="specific-block">
+                <h2>Саола</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Pseudoryx_nghetinhensis.PNG" alt="Изображение-Лемур">
+                </div>
+                <p>Это уникальное животное, которое было открыто относительно недавно, в 1992 году. Саола, также известный как "азиатский единорог", имеет очень редкий и уникальный вид. Он обитает в горных лесах Вьетнама и Лаоса.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Саола', '_blank')">Узнать больше на Википедии</button>
+            </div>
+            <div class="specific-block">
+                <h2>Тигр Амура</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/P.t.altaica_Tomak_Male.jpg/1280px-P.t.altaica_Tomak_Male.jpg" alt="Изображение">
+                </div>
+                <p>Это один из самых крупных и мощных хищников на планете. Этот вид тигра обитает в Дальневосточной Азии, включая Китай и Россию. Тигры Амура известны своими мощными телами и красивыми полосатыми шкурами.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Амурский_тигр', '_blank')">Узнать больше на Википедии</button>
+            </div>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="NA-content">
+            <h1>Северная Америка</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/-bWVoyw9OU8" title="Animals of America 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="gradientNA-background">
+        <div class="content-block">
+            <div class="specific-block">
+                <h2>Бизон</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/American_bison_k5680-1.jpg/1920px-American_bison_k5680-1.jpg" alt="Изображение-Куду">
+                </div>
+                <p>Это одно из самых впечатляющих животных Северной Америки. Бизоны являются национальным символом США и одним из крупнейших земноводных животных континента. Они обитают в равнинных и горных районах, где питаются травой.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Бизон', '_blank')">Узнать больше на Википедии</button>
+            </div>
+            <div class="specific-block">
+                <h2>Гризли</h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/ru/e/e6/P1020019.JPG" alt="Изображение-Лемур">
+                </div>
+                <p>Это подвид бурого медведя, который обитает в Северной Америке. Гризли известны своей силой и мощью, а также уникальной способностью приспосабливаться к различным средам обитания.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Гризли', '_blank')">Узнать больше на Википедии</button>
+            </div>
+            <div class="specific-block">
+                <h2>Североамериканский горный козёл </h2>
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Spanish_ibex.jpg" alt="Изображение">
+                </div>
+                <p>Это уникальное животное, которое обитает в горных районах Северной Америки. Эти козлы известны своими длинными белыми шерстяными покровами и умением лазать по крутым скалам.</p>
+                <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Горные_козлы', '_blank')">Узнать больше на Википедии</button>
+            </div>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="SA-content">
+            <h1>Южная Америка</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/7IBzc3pajzY" title="Animals of South America 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="specific-block">
+            <h2>Капибара</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Carpincho_en_el_Parque_Nacional_El_Palmar.jpg/1280px-Carpincho_en_el_Parque_Nacional_El_Palmar.jpg" alt="Изображение-Куду">
+            </div>
+            <p>Это самые крупные грызуны в мире. Они обитают во многих частях Южной Америки и могут весить от 35 до 66 кг. Капибары ведут водный образ жизни и могут проводить в воде до 5 часов, чтобы укрыться от хищников.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Капибара', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Ягуар</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/On%C3%A7a_pintada.jpg/1280px-On%C3%A7a_pintada.jpg" alt="Изображение-Лемур">
+            </div>
+            <p>Это крупный хищник, который обитает в Южной Америке. Ягуары известны своей мощью и грацией, а также уникальной росписью на шкуре, которая помогает им маскироваться в джунглях.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Ягуар', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Гигантский муравьед</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oso_hormiguero_%28Myrmecophaga_tridactyla%29_%288697865538%29.jpg/1280px-Oso_hormiguero_%28Myrmecophaga_tridactyla%29_%288697865538%29.jpg" alt="Изображение">
+            </div>
+            <p>Это одно из самых уникальных животных Южной Америки. Они обладают длинным, трубообразным ртом и мощными когтями, которые используют для разрушения муравейников и термитников.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Гигантский_муравьед', '_blank')">Узнать больше на Википедии</button>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="australia-content">
+            <h1>Австралия</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/pkQpYG80WAo" title="Animals of Australia 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="specific-block">
+            <h2>Кенгуру</h2>
+            <div class="image-container">
+                <img src="https://static.wikia.nocookie.net/lisenot/images/7/76/Kangaru_desktop.jpg/revision/latest/scale-to-width-down/1000?cb=20150818195745&path-prefix=ru" alt="Изображение-Куду">
+            </div>
+            <p>Это, пожалуй, самое известное австралийское животное. Кенгуру примечательны своим уникальным способом передвижения - прыжками, при которых они используют свои мощные задние лапы. В Австралии обитает несколько видов кенгуру, включая красного кенгуру, который является самым крупным видом.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Кенгуру', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Коала</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/1024px-Koala_climbing_tree.jpg" alt="Изображение-Лемур">
+            </div>
+            <p>Это еще одно уникальное австралийское животное. Коалы известны своими медвежьими внешними чертами и способностью проводить большую часть времени на деревьях. Они питаются листьями эвкалипта и проводят большую часть дня в спящем состоянии.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Коала', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Утконос</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Platypus.jpg" alt="Изображение">
+            </div>
+            <p>Это одно из самых необычных животных в мире, которое можно найти только в Австралии. Утконосы относятся к отряду монотрем, являющихся единственными современными яйцекладущими млекопитающими. У них есть клюв, похожий на клюв утки, и они могут выделять яд.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Утконос', '_blank')">Узнать больше на Википедии</button>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="EU-content">
+            <h1>Европа</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/-0F7iua-37Y" title="Animals of Europe 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="specific-block">
+            <h2>Шотландский олень</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cervus_elaphus_Luc_Viatour_6.jpg/1280px-Cervus_elaphus_Luc_Viatour_6.jpg" alt="Изображение-Куду">
+            </div>
+            <p>Это крупнейший вид оленя, обитающий в Европе. Они могут достигать веса до 240 кг и высоты в холке до 1,37 м. Шотландский олень известен своими впечатляющими рогами, которые могут достигать ширины в 1 метр.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Благородный_олень', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Зубр</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Bison_bonasus_%28Linnaeus_1758%29.jpg/1920px-Bison_bonasus_%28Linnaeus_1758%29.jpg" alt="Изображение-Лемур">
+            </div>
+            <p>Это самое крупное наземное животное Европы. Они были на грани исчезновения в начале 20-го века, но благодаря усилиям по сохранению видов их популяция восстановилась. Сегодня они обитают в лесах Восточной Европы.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Зубр', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Альпийский сурок</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Marmota_marmota_07.jpg/1024px-Marmota_marmota_07.jpg" alt="Изображение">
+            </div>
+            <p>Это маленькое, но уникальное животное, которое обитает в горных районах Европы. Они известны своими длинными зимними спячками, которые могут длиться до 9 месяцев в году.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Альпийский_сурок', '_blank')">Узнать больше на Википедии</button>
+        </div>
+    </div>
+    <div class="content-block">
+        <div id="antarctida-content">
+            <h1>Антрактида</h1>
+            <iframe width="1268" height="713" src="https://www.youtube.com/embed/UcOEmdYxJ7c" title="Antarctic Wildlife in 4K" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="specific-block">
+            <h2>Императорский пингвин</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Kaiserpinguine_mit_Jungen.jpg/1280px-Kaiserpinguine_mit_Jungen.jpg" alt="Изображение-Куду">
+            </div>
+            <p>Это самый крупный из всех видов пингвинов. Они могут достигать роста до 1,3 метра и веса до 40 кг. Императорские пингвины известны своей уникальной способностью выдерживать экстремальные условия Антарктиды, включая температуры до -60°C и ветры скоростью до 200 км/ч.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/Императорский_пингвин', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Антарктический кальмар Колосс</h2>
+            <div class="image-container">
+                <img src="https://avatars.dzeninfra.ru/get-zen_doc/3612047/pub_614472914252eb44045f8c9f_614473bb5326d77bafe00a24/scale_1200" alt="Изображение-Лемур">
+            </div>
+            <p>Это одно из самых крупных беспозвоночных в мире. Они могут достигать длины до 10 метров и веса до 495 кг. Эти кальмары обитают на глубине до 2200 метров под уровнем моря.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D1%82%D0%B0%D1%80%D0%BA%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%B3%D0%B8%D0%B3%D0%B0%D0%BD%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%B0%D0%BB%D1%8C%D0%BC%D0%B0%D1%80#:~:text=Mesonychoteuthis%20hamiltoni)%20%E2%80%94%20%D0%B3%D0%BB%D1%83%D0%B1%D0%BE%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9%20%D0%B2%D0%B8%D0%B4%20%D0%BA%D0%B0%D0%BB%D1%8C%D0%BC%D0%B0%D1%80%D0%BE%D0%B2,%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%20%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B8%D0%B7%20%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D1%85%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9.&text=%D0%92%D0%BF%D0%B5%D1%80%D0%B2%D1%8B%D0%B5%20%D0%B1%D1%8B%D0%BB%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%20%D0%B2%201925%20%D0%B3%D0%BE%D0%B4%D1%83%20%D0%B1%D1%80%D0%B8%D1%82%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%BC%20%D0%B7%D0%BE%D0%BE%D0%BB%D0%BE%D0%B3%D0%BE%D0%BC%20%D0%93.', '_blank')">Узнать больше на Википедии</button>
+        </div>
+        <div class="specific-block">
+            <h2>Антарктическая птица Буревестник</h2>
+            <div class="image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Thalassoica_antarctica_-_flying.jpg/1280px-Thalassoica_antarctica_-_flying.jpg" alt="Изображение">
+            </div>
+            <p>Это птица с самым большим размахом крыльев среди всех птиц в мире, достигающим до 3,5 метров. Буревестники проводят большую часть своей жизни в открытом море и возвращаются на сушу только для размножения.</p>
+            <button style="background-color: #ffffff; color: #0F1B07; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;" onclick="window.open('https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D1%82%D0%B0%D1%80%D0%BA%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%B1%D1%83%D1%80%D0%B5%D0%B2%D0%B5%D1%81%D1%82%D0%BD%D0%B8%D0%BA#:~:text=%D0%90%D0%BD%D1%82%D0%B0%D1%80%D0%BA%D1%82%D0%B8%CC%81%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1%D1%83%D1%80%D0%B5%D0%B2%D0%B5%CC%81%D1%81%D1%82%D0%BD%D0%B8%D0%BA%20(%D0%BB%D0%B0%D1%82.,%D1%82%D1%80%D1%83%D0%B1%D0%BA%D0%BE%D0%BD%D0%BE%D1%81%D1%8B%D1%85)%2C%20%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%91%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B2%20%D0%90%D0%BD%D1%82%D0%B0%D1%80%D0%BA%D1%82%D0%B8%D0%BA%D0%B5.', '_blank')">Узнать больше на Википедии</button>
+        </div>
+    </div>
+</body>
+</html>
