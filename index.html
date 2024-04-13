@@ -13,7 +13,7 @@
         a.your-button-class {
             background-color: #73793a;
             font-size: 14px;
-            padding: 10px 24px 10px 28px;
+            padding: 5px;
             -webkit-appearance: none;
             -moz-appearance: none;
             transition: background-color 0.5s ease-in-out;
@@ -28,15 +28,14 @@
             position: fixed;
             background-color: #73793a;
             text-align: right;
-            padding: 10px;
+            padding: 15px;
             width: 100%;
             z-index: 1000;
             border-bottom: 3px solid black;
         }
 
             .header a {
-                margin: 0 10px;
-                margin-top: 0px
+                margin: 2vh 10px 2vh;
             }
 
             .header-image {
@@ -179,6 +178,20 @@
         .next {
             right: 0;
         }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            overflow: hidden;
+        }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
     </style>
 </head>
 <body>
@@ -192,7 +205,7 @@
         <a href="#SA-content" class="your-button-class">Южная Америка</a>
         <a href="#australia-content" class="your-button-class">Австралия</a>
         <a href="#EU-content" class="your-button-class">Европа</a>
-        <a href="#antarctida-content" class="your-button-class">Антрактида</a>
+        <a href="#antarctida-content" class="your-button-class">Антрактида           ..</a>
     </div>
     <script>
         $(document).ready(function () {
@@ -242,7 +255,6 @@
 
             showSlide(currentSlide);
         });
-
     </script>
     <div class="content-block">
         <div>
@@ -253,8 +265,10 @@
     <div class="content-block">
         <div id="africa-content">
             <h1>Африка</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/GRde7WGScrM" title="Animals of Africa 4K - Scenic Relaxation Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/GRde7WGScrM" title="Animals of Africa 4K - Scenic Relaxation Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="gradientafrica-background">
         <div class="content-block">
@@ -287,8 +301,10 @@
     <div class="content-block">
         <div id="asia-content">
             <h1>Азия</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/KfjIaEP0EtY" title="Animals of Asia 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe width="1268" height="713" src="https://www.youtube.com/embed/KfjIaEP0EtY" title="Animals of Asia 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="gradientasia-background">
         <div class="content-block">
@@ -321,8 +337,10 @@
     <div class="content-block">
         <div id="NA-content">
             <h1>Северная Америка</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/-bWVoyw9OU8" title="Animals of America 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe width="1268" height="713" src="https://www.youtube.com/embed/-bWVoyw9OU8" title="Animals of America 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="gradientNA-background">
         <div class="content-block">
@@ -355,8 +373,10 @@
     <div class="content-block">
         <div id="SA-content">
             <h1>Южная Америка</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/7IBzc3pajzY" title="Animals of South America 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe width="1268" height="713" src="https://www.youtube.com/embed/7IBzc3pajzY" title="Animals of South America 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="content-block">
         <div class="specific-block">
@@ -387,8 +407,10 @@
     <div class="content-block">
         <div id="australia-content">
             <h1>Австралия</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/pkQpYG80WAo" title="Animals of Australia 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe width="1268" height="713" src="https://www.youtube.com/embed/pkQpYG80WAo" title="Animals of Australia 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="content-block">
         <div class="specific-block">
@@ -419,8 +441,10 @@
     <div class="content-block">
         <div id="EU-content">
             <h1>Европа</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/-0F7iua-37Y" title="Animals of Europe 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe width="1268" height="713" src="https://www.youtube.com/embed/-0F7iua-37Y" title="Animals of Europe 4K - Scenic Wildlife Film With Calming Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="content-block">
         <div class="specific-block">
@@ -451,8 +475,10 @@
     <div class="content-block">
         <div id="antarctida-content">
             <h1>Антрактида</h1>
-            <iframe width="1268" height="713" src="https://www.youtube.com/embed/UcOEmdYxJ7c" title="Antarctic Wildlife in 4K" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="video-container">
+        <iframe width="1268" height="713" src="https://www.youtube.com/embed/UcOEmdYxJ7c" title="Antarctic Wildlife in 4K" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="content-block">
         <div class="specific-block">
